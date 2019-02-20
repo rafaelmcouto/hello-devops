@@ -61,27 +61,3 @@ When assessing this exercise, we will take the following points into considerati
 Suppose that a _junior_ developer (who has access to most common Linux distributions and an AWS account) will try to run your solution. Would he be able to install all requirements and run it easily? Would he be able to verify that it works? Should any problems arise (e.g. a package is missing), would he be able to identify and fix it?
 
 We don't expect a production-grade solution, but we expect you to show that you'd be able to deploy a production-grade distributed system given enough tools and time.
-
-## Submissions
-
-You should send us a [git patch](https://git-scm.com/docs/git-format-patch) file with your solution. To do so follow these steps:
-
-1.  Clone (do NOT fork) this repository to your machine:
-
-        $ git clone https://github.com/quintoandar/hello-devops.git
-
-2.  Implement your solution and comit your changes locally:
-
-        $ git commit -am "My solution"
-
-3.  Create a patch file for this repository:
-
-        $ git format-patch origin/master --stdout > result.patch
-
-4.  Email us the `result.patch` file.
-
-Please do **not** fork this repository and do **not** publish your solution online!
-
-## Contact
-
-Feel free to reach out if you have any questions! Also, we expect this problem to take some hours at most, but please do get in touch if you need more time to provide a good solution! It is far better than delivering something that does not work :)
