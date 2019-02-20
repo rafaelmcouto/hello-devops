@@ -34,6 +34,22 @@ We'll accept _any_ of the following types of solution:
 
 **Important:** please **edit this README file** with step-by-step instructions on _how_ to deploy using your solution. Feel free to also include a short paragraph and/or a diagram explaining your solution.
 
+## Deploying
+
+To execute the project, you need have docker and docker-compose installed:
+* https://docs.docker.com/compose/install/#prerequisites
+
+You must add the changes at the project first.
+
+Start the project:
+* docker-compose up
+
+After application running, you can access:
+* http://localhost
+
+And you can see the queued nessages at this address:
+* http://localhost:8000
+
 ## Expectations
 
 When assessing this exercise, we will take the following points into consideration:
