@@ -1,4 +1,5 @@
 CREATE DATABASE IF NOT EXISTS hello;
+GRANT ALL PRIVILEGES ON hello.* TO 'quinto'@'%' IDENTIFIED BY 'QuintoAndar';
 USE hello;
 CREATE TABLE Messages (
     ID int NOT NULL AUTO_INCREMENT,

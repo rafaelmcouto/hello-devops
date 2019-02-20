@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-host = os.getenv("RABBITMQ_HOST", "localhost")
+host = os.getenv("RABBITMQ_HOST", "rabbitmq")
 port = os.getenv("RABBITMQ_PORT", 5672)
 queue = os.getenv("RABBITMQ_QUEUE", "hello")
 
@@ -21,6 +21,8 @@ html = """
 def index():
     if request.method == 'POST':
         app.logger.info(request.form.get("flavour"))
+        #Add this line
+        enqueue(request.form.get("flavour"))
     return html
 
 
