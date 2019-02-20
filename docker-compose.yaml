@@ -1,0 +1,71 @@
+version: '2'
+
+services:
+  mysqldb:
+    image: mysql/mysql-server:5.6
+    restart: always
+    environment:
+      - MYSQL_HOST=localhost
+      - MYSQL_USER=root
+      - MYSQL_DATABASE=hello
+      - MYSQL_ROOT_PASSWORD=rootQuintoAndar
+    ports:
+      - 3306:3306
+    expose:
+      - "3306"
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./create_database.sql:/docker-entrypoint-initdb.d/create_database.sql
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: always
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_QUEUE=hello
+    ports:
+      - 5672:5672
+      - 8000:15672
+    expose:
+      - "5672"
+      - "15672"
+    depends_on: 
+      - mysqldb
+    volumes:
+      - rabbit:/var/lib/rabbitmq
+
+  hello-node:
+    build: ./hello-node/.
+    restart: always
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_QUEUE=hello
+      - MYSQL_HOST=mysqldb
+      - MYSQL_USER=quinto
+      - MYSQL_DATABASE=hello
+      - MYSQL_PASSWORD=QuintoAndar
+    links:
+      - rabbitmq
+    depends_on: 
+      - mysqldb
+      - rabbitmq
+
+  hello-python:
+    build: ./hello-python/.
+    restart: always
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_QUEUE=hello
+    links:
+      - rabbitmq
+    ports:
+      - 80:8000
+    depends_on:
+      - mysqldb
+      - rabbitmq
+volumes:
+  db-data:
+  rabbit:
